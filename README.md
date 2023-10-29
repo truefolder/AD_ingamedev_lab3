@@ -54,6 +54,28 @@ https://github.com/truefolder/AD_ingamedev_lab3/tree/main/dragonpicker/Assets/_S
 ## Задание 3
 ### Решение в 80+ баллов должно заполнять google-таблицу данными из Python. В Python данные также должны быть визуализированы.
 
+Скрипт на python, заполняющий таблицу из первого задания данными:
+```python
+import gspread
+import numpy as np
+gc = gspread.service_account(filename='stalwart-edge-361617-65c49b91499f.json')
+sh = gc.open("Dragon Picker")
+speed = 4
+time_between_egg_drops = 2
+left_right_distance = 10
+chance_direction = 0.01
+i = 2
+while i <= 11:
+    sh.sheet1.update(('B' + str(i)), str(speed))
+    sh.sheet1.update(('C' + str(i)), str(round(time_between_egg_drops, 3)))
+    sh.sheet1.update(('D' + str(i)), str(left_right_distance))
+    sh.sheet1.update(('E' + str(i)), str(round(chance_direction, 3)))
+    speed += 1
+    time_between_egg_drops -= 0.1
+    left_right_distance += 1
+    chance_direction += 0.05
+    i += 1
+```
 ## Выводы
 Я разработал по моим меркам оптимальный баланс для десяти уровней игры Dragon Picker. Научился визуализировать сложность игровых уровней. Научился самостоятельно писать скрипт на заполнение гугл-таблиц и визуализировать данные в python
 
